@@ -6,7 +6,9 @@ platform :ios do
     run_tests(
       project: "DevOpsPipelineApp.xcodeproj",
       scheme: "DevOpsPipelineApp",
-      skip_testing: ["DevOpsPipelineAppUITests"] # This tells Fastlane to skip the flaky UI tests
+      skip_testing: ["DevOpsPipelineAppUITests"],
+      # Tell Fastlane to just find any available iPhone simulator
+      device: "iPhone 15" 
     )
   end
 end
