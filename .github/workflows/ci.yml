@@ -1,29 +1,25 @@
 name: Apple CI Pipeline
 
-# 1. THE TRIGGER: When should this pipeline run?
 on:
   push:
-    branches: [ "main" ] # Runs every time code is pushed to the main branch
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ] # Runs when someone tries to merge code into main
+    branches: [ "main" ]
 
-# 2. THE JOBS: What servers do we need and what should they do?
 jobs:
   test-application:
     name: Build and Test
-    runs-on: macos-latest # GitHub provides a free macOS virtual machine!
+    runs-on: macos-latest
 
     steps:
-      # Step A: Download the code onto the GitHub runner
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Step B: Select the correct Xcode version on the runner
+      # Explicitly set the Xcode version to a known stable release
       - name: Setup Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable
+          xcode-version: '15.2' # We use a specific version rather than 'latest-stable'
 
-      # Step C: Execute the exact same Fastlane command you ran locally
       - name: Run Fastlane Test Lane
         run: fastlane test
