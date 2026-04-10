@@ -7,8 +7,7 @@ platform :ios do
       project: "DevOpsPipelineApp.xcodeproj",
       scheme: "DevOpsPipelineApp",
       skip_testing: ["DevOpsPipelineAppUITests"],
-      # Tell Fastlane to just find any available iPhone simulator
-      device: "iPhone 15" 
+      device: "iPhone 17 Pro" # Updated to match your local Xcode environment
     )
   end
 end
