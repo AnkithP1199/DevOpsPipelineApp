@@ -6,8 +6,8 @@ platform :ios do
     run_tests(
       project: "DevOpsPipelineApp.xcodeproj",
       scheme: "DevOpsPipelineApp",
-      skip_testing: ["DevOpsPipelineAppUITests"],
-      device: "iPhone 17 Pro" # Updated to match your local Xcode environment
+      skip_testing: ["DevOpsPipelineAppUITests"]
+      # Notice the device line is completely gone
     )
   end
 end
