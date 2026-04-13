@@ -15,11 +15,20 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Explicitly set the Xcode version to the newest available on the runner
       - name: Setup Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '26.3' # Updated from 15.2
+          xcode-version: '26.3' 
 
       - name: Run Fastlane Test Lane
         run: fastlane test
+
+      # NEW STEP: Continuous Delivery of Test Reports
+      - name: Upload Test Report Artifact
+        uses: actions/upload-artifact@v4
+        # We use 'if: always()' so the report uploads even if a test fails!
+        if: always() 
+        with:
+          name: Fastlane-Test-Report
+          # This is the default folder where Fastlane saves the HTML/JUnit reports
+          path: fastlane/test_output/
